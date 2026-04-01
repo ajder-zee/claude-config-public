@@ -21,7 +21,7 @@ For a detailed walkthrough of what everything does, read **[GUIDE.md](GUIDE.md)*
 
 2. Clone this repo as `~/.claude/`:
    ```
-   git clone <repo-url> ~/.claude
+   git clone https://github.com/ajder-zee/claude-config-public.git ~/.claude
    ```
 
 3. Run the bootstrap:
@@ -43,7 +43,7 @@ For a detailed walkthrough of what everything does, read **[GUIDE.md](GUIDE.md)*
 Don't want to replace it entirely? Clone elsewhere and merge:
 
 ```
-git clone <repo-url> /tmp/claude-team-config
+git clone https://github.com/ajder-zee/claude-config-public.git /tmp/claude-team-config
 cp /tmp/claude-team-config/CLAUDE.md ~/.claude/
 cp /tmp/claude-team-config/settings.json ~/.claude/
 cp -r /tmp/claude-team-config/commands/ ~/.claude/
