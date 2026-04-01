@@ -1,18 +1,16 @@
 # Meridium Labs — Claude Code Team Guide
 
-This is the full walkthrough of everything in this repo: what each piece does, how to use it, and how to extend it. For setup instructions, see [README.md](README.md).
-
-**Important:** All setup happens in Terminal (your regular shell), not inside Claude Code or Cursor. You're replacing the config directory that Claude Code reads from. Once it's done, every Claude Code session picks it up automatically, wherever you run it.
+This is the full walkthrough of everything in this repo: what each piece does, how to use it, and how to extend it. For setup, see [README.md](README.md) (it's one command).
 
 ---
 
 ## What This Repo Is
 
-This repo **is** your `~/.claude/` directory. When you clone it and run the bootstrap script, it installs 9 plugins, 3 custom skills, and 1 custom slash command into your Claude Code setup. Every team member gets the same baseline toolkit.
+The team's shared Claude Code configuration. Run the setup script and it adds 9 plugins, 3 custom skills, and 1 slash command to your existing Claude Code setup. Nothing gets deleted or overwritten.
 
-The config is split into two layers:
-- **Team layer** (this repo): plugins, skills, commands, and a starter `CLAUDE.md` that everyone shares
-- **Personal layer** (your additions): your own writing style rules, personal tools, workflow preferences. You add these on top.
+The config works in two layers:
+- **Team layer** (from this repo): plugins, skills, commands, and a baseline `CLAUDE.md` that gets appended to yours
+- **Personal layer** (whatever you already have): your own writing style rules, personal tools, workflow preferences. All untouched.
 
 ---
 

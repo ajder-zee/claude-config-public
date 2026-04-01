@@ -1,12 +1,12 @@
 # Meridium Labs — Team Claude Code Config
 
-Shared Claude Code configuration for the Meridium Labs team. Clone it, run the bootstrap, get a fully loaded setup with all the plugins, skills, and commands we use.
+Shared Claude Code configuration for the Meridium Labs team. One script adds all the team's plugins, skills, and commands to your setup without touching anything you already have.
 
 For a detailed walkthrough of what everything does, read **[GUIDE.md](GUIDE.md)**.
 
 ## Setup
 
-**Run all setup commands in Terminal (or your regular shell), not inside Claude Code or Cursor.** You're replacing the config directory that Claude Code reads from, so Claude Code can't be using it at the same time. Once setup is done, every future Claude Code session (Terminal, Cursor, VS Code, wherever) picks up the config automatically.
+**Run this in Terminal**, not inside Claude Code or Cursor. The script modifies the config directory that Claude Code reads from, so Claude Code shouldn't be running at the same time.
 
 ### Prerequisites
 
@@ -14,55 +14,51 @@ For a detailed walkthrough of what everything does, read **[GUIDE.md](GUIDE.md)*
 - **Git**
 - **Claude Code CLI**: `npm install -g @anthropic-ai/claude-code`
 
-If you've never run Claude Code before, run `claude` once in Terminal to create the initial `~/.claude/` directory and log in. Then quit Claude Code and continue with setup.
+If you've never run Claude Code before, run `claude` once in Terminal to create your initial `~/.claude/` directory and log in. Then quit and continue below.
 
-### First-Time Setup (no existing config)
-
-If you've never customized Claude Code (or just ran it for the first time above):
+### One-Line Install
 
 ```
-mv ~/.claude ~/.claude-backup
-git clone https://github.com/ajder-zee/claude-config-public.git ~/.claude
-cd ~/.claude && chmod +x bootstrap.sh && ./bootstrap.sh
-cp ~/.claude-backup/.credentials.json ~/.claude/
+curl -fsSL https://raw.githubusercontent.com/ajder-zee/claude-config-public/main/setup.sh | bash
 ```
 
-That last line copies your login credentials back. Without it, you'll need to log in again.
+That's it. The script:
+- Adds the team's 9 plugins to your settings (your existing plugins stay)
+- Copies 3 team skills and 1 slash command (skips any you already have)
+- Appends the team config to your CLAUDE.md (your existing content stays at the top)
+- Installs all plugins via the bootstrap
 
-### Setup With Existing Config (merge approach)
+Nothing gets deleted or overwritten. It's purely additive.
 
-If you already have a customized `~/.claude/` you don't want to lose:
+### Manual Install (if you prefer)
 
 ```
 git clone https://github.com/ajder-zee/claude-config-public.git /tmp/claude-team-config
-cp /tmp/claude-team-config/CLAUDE.md ~/.claude/
-cp /tmp/claude-team-config/settings.json ~/.claude/
-cp -r /tmp/claude-team-config/commands/ ~/.claude/
-cp -r /tmp/claude-team-config/skills/ ~/.claude/
-cp /tmp/claude-team-config/bootstrap.sh ~/.claude/
-cd ~/.claude && chmod +x bootstrap.sh && ./bootstrap.sh
+cd /tmp/claude-team-config
+./setup.sh
 ```
-
-This adds the team config on top of your existing setup without touching your credentials or personal files.
 
 ### After Setup
 
-Open a new Claude Code session (in Terminal, Cursor, or wherever you use it). The plugins, skills, and commands are all loaded automatically. Try `/project-operations-setup` or ask Claude to "audit my CLAUDE.md" to confirm everything's working.
+Open a new Claude Code session (Terminal, Cursor, VS Code, wherever). Everything's loaded. Try `/project-operations-setup` or ask Claude to "audit my CLAUDE.md" to verify.
 
 ## Keeping It Synced
 
-After the team config is updated, pull the latest:
+When the team config is updated, re-run the setup:
 ```
-cd ~/.claude
-git pull
-./bootstrap.sh   # only needed if plugins changed
+curl -fsSL https://raw.githubusercontent.com/ajder-zee/claude-config-public/main/setup.sh | bash
 ```
+
+The script is idempotent. Running it again won't duplicate anything.
 
 ## Contributing
 
-Added a new skill, command, or plugin? Commit and push:
+Added a new skill, command, or plugin to the team config? Clone the repo, make your changes, commit and push:
+
 ```
-cd ~/.claude
+git clone https://github.com/ajder-zee/claude-config-public.git /tmp/claude-team-config
+cd /tmp/claude-team-config
+# ... make changes ...
 git add -A
 git commit -m "Added [thing]"
 git push
