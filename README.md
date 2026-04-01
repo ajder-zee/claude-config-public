@@ -4,43 +4,34 @@ Shared Claude Code configuration for the Meridium Labs team. Clone it, run the b
 
 For a detailed walkthrough of what everything does, read **[GUIDE.md](GUIDE.md)**.
 
-## Setup (New Device)
+## Setup
+
+**Run all setup commands in Terminal (or your regular shell), not inside Claude Code or Cursor.** You're replacing the config directory that Claude Code reads from, so Claude Code can't be using it at the same time. Once setup is done, every future Claude Code session (Terminal, Cursor, VS Code, wherever) picks up the config automatically.
 
 ### Prerequisites
 
-- **Claude Code CLI** installed: `npm install -g @anthropic-ai/claude-code`
 - **Node.js** (v18+) and **npm**
 - **Git**
+- **Claude Code CLI**: `npm install -g @anthropic-ai/claude-code`
 
-### Steps
+If you've never run Claude Code before, run `claude` once in Terminal to create the initial `~/.claude/` directory and log in. Then quit Claude Code and continue with setup.
 
-1. If `~/.claude/` already exists, back it up:
-   ```
-   mv ~/.claude ~/.claude-backup
-   ```
+### First-Time Setup (no existing config)
 
-2. Clone this repo as `~/.claude/`:
-   ```
-   git clone https://github.com/ajder-zee/claude-config-public.git ~/.claude
-   ```
+If you've never customized Claude Code (or just ran it for the first time above):
 
-3. Run the bootstrap:
-   ```
-   cd ~/.claude
-   chmod +x bootstrap.sh
-   ./bootstrap.sh
-   ```
+```
+mv ~/.claude ~/.claude-backup
+git clone https://github.com/ajder-zee/claude-config-public.git ~/.claude
+cd ~/.claude && chmod +x bootstrap.sh && ./bootstrap.sh
+cp ~/.claude-backup/.credentials.json ~/.claude/
+```
 
-4. Start Claude Code. Done.
+That last line copies your login credentials back. Without it, you'll need to log in again.
 
-5. If your backup had a `.credentials.json`, copy it over:
-   ```
-   cp ~/.claude-backup/.credentials.json ~/.claude/
-   ```
+### Setup With Existing Config (merge approach)
 
-### If You Already Have a Working `~/.claude/`
-
-Don't want to replace it entirely? Clone elsewhere and merge:
+If you already have a customized `~/.claude/` you don't want to lose:
 
 ```
 git clone https://github.com/ajder-zee/claude-config-public.git /tmp/claude-team-config
@@ -52,13 +43,19 @@ cp /tmp/claude-team-config/bootstrap.sh ~/.claude/
 cd ~/.claude && chmod +x bootstrap.sh && ./bootstrap.sh
 ```
 
+This adds the team config on top of your existing setup without touching your credentials or personal files.
+
+### After Setup
+
+Open a new Claude Code session (in Terminal, Cursor, or wherever you use it). The plugins, skills, and commands are all loaded automatically. Try `/project-operations-setup` or ask Claude to "audit my CLAUDE.md" to confirm everything's working.
+
 ## Keeping It Synced
 
-After pulling changes:
+After the team config is updated, pull the latest:
 ```
 cd ~/.claude
 git pull
-./bootstrap.sh   # only if plugins changed
+./bootstrap.sh   # only needed if plugins changed
 ```
 
 ## Contributing

@@ -1,6 +1,8 @@
 # Meridium Labs — Claude Code Team Guide
 
-This is the full walkthrough of everything in this repo: what each piece does, how to use it, and how to extend it. If you just want to get set up, start with [README.md](README.md).
+This is the full walkthrough of everything in this repo: what each piece does, how to use it, and how to extend it. For setup instructions, see [README.md](README.md).
+
+**Important:** All setup happens in Terminal (your regular shell), not inside Claude Code or Cursor. You're replacing the config directory that Claude Code reads from. Once it's done, every Claude Code session picks it up automatically, wherever you run it.
 
 ---
 
