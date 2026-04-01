@@ -1,0 +1,43 @@
+# ============================================
+# Meridium Labs Team Config - .gitignore
+# ============================================
+# Only config, skills, commands, and settings
+# are tracked. Everything else is excluded.
+# ============================================
+
+# --- Sensitive / Credentials ---
+.credentials.json
+
+# --- Runtime & Session State ---
+.update.lock
+mcp-needs-auth-cache.json
+stats-cache.json
+history.jsonl
+
+# --- Ephemeral Directories ---
+projects/
+debug/
+session-env/
+shell-snapshots/
+cache/
+backups/
+paste-cache/
+downloads/
+file-history/
+todos/
+tasks/
+plans/
+telemetry/
+statsig/
+
+# --- Plugin Runtime (re-fetched on install) ---
+plugins/cache/
+plugins/marketplaces/
+plugins/install-counts-cache.json
+
+# --- OS Junk ---
+.DS_Store
+Thumbs.db
+
+# --- Git internals (nested) ---
+**/.git/
