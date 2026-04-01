@@ -148,11 +148,11 @@ Commands are slash commands you type directly in Claude Code.
 
 ## The CLAUDE.md File
 
-The `CLAUDE.md` in this repo is a team baseline. It lists what plugins and skills are available so Claude knows what tools it has. It's the starting point.
+The setup script appends the team's `CLAUDE.md` content below whatever you already have. Your personal config stays at the top, team config below it. Claude reads the whole file, so both work together.
 
-**To personalize it:** Add your own sections. Writing style preferences, personal tools, workflow rules. The team config gives you the foundation; your additions are yours.
+**To personalize:** Add your own rules anywhere above the team section (or edit it directly). Writing style preferences, personal tools, workflow rules. The team config gives you the baseline; everything above it is yours.
 
-**Project-level vs global:** This `CLAUDE.md` is your **global** config (applies to all projects). Each project can also have its own `CLAUDE.md` with project-specific context. Claude reads both.
+**Project-level vs global:** The global `~/.claude/CLAUDE.md` applies to all projects. Each project can also have its own `CLAUDE.md` with project-specific context. Claude reads both.
 
 **`.claude.local.md`:** For personal preferences you don't want shared with the team. Gitignored by default.
 
@@ -221,11 +221,12 @@ Example: `commands/my-command.md` becomes `/my-command`.
 
 ```
 ~/.claude/
-├── CLAUDE.md              ← Global instructions (team baseline + your additions)
+├── CLAUDE.md              ← Global instructions (your config + team baseline appended)
 ├── GUIDE.md               ← This file
 ├── README.md              ← Quick setup reference
+├── setup.sh               ← One-command install (additive, doesn't overwrite)
 ├── settings.json          ← Enabled plugins and marketplace config
-├── bootstrap.sh           ← Installs plugins on new devices
+├── bootstrap.sh           ← Installs plugins (called by setup.sh)
 ├── .gitignore             ← Keeps credentials and caches out of git
 ├── commands/
 │   ├── project-operations-setup.md       ← /project-operations-setup command
